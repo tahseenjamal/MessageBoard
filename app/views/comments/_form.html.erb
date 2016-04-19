@@ -1,0 +1,13 @@
+
+<% if user_signed_in? %>
+
+
+	<%= simple_form_for([@message,@message.comments.build]) do |f| %>
+
+	<%= f.input :content, label: false, placeholder: "Type your comment here",input_html: {style: 'height:200px; width:500px'} %>
+	<%= f.button :submit, "Submit"  %>
+
+	<% end %>
+
+
+<% end %>

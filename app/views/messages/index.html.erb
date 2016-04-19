@@ -1,0 +1,31 @@
+
+<% @messages.each do |message|  %>
+
+	<h2><%= message.title %></h2>
+	<% if user_signed_in? %>
+
+		<% if message.user_id == current_user.id %>
+	    
+			<div style="float: left; width: auto; padding-right: 10px">
+				 <%= button_to "Edit", edit_message_path(message), class: "btn btn-default", :method => :get  %>
+			</div>
+
+			<div style="float: left; width: auto; padding-right: 10px">
+				<%= link_to "Delete", message_path(message), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default"  %>
+			</div>
+
+		<% end %>
+
+	<% end %>
+
+	<h5>Created by: <%= message.user.email %></h5>
+	<h5><%= time_ago_in_words(message.created_at) %> ago</h5>
+	<h5><%= link_to "View Description", message_path(message), class: "btn btn-default" %></h5>
+
+
+<% end %>
+
+
+<p>Please check if a signed user can pass on delete link parameters of another user
+	Also authentication check at controller levlevel </p>
+<p>comment editing also failed. Please check that module also </p>
